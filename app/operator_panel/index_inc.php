@@ -300,9 +300,9 @@ if (is_array($activity)) {
     //     $block .=            "</span>";
     //     $block .= "		</td>";
         $block .= "		<td class='op_ext_info ".$style."'>";
-        if ($dir_icon != '') {
-            $block .= "			<img src='resources/images/".$dir_icon.".png' align='right' style='margin-top: 3px; margin-right: 1px; width: 12px; height: 12px; cursor: help;' draggable='false' alt=\"".$text['label-call_direction']."\" title=\"".$text['label-call_direction']."\">";
-        }
+        // if ($dir_icon != '') {
+        //     $block .= "			<img src='resources/images/".$dir_icon.".png' align='right' style='margin-top: 3px; margin-right: 1px; width: 12px; height: 12px; cursor: help;' draggable='false' alt=\"".$text['label-call_direction']."\" title=\"".$text['label-call_direction']."\">";
+        // }
         $block .= "			<span class='op_user_info'>";
         if ($ext['effective_caller_id_name'] != '' && $ext['effective_caller_id_name'] != $extension) {
             $block .= "			<strong class='strong'>".$ext['effective_caller_id_name']."</strong> (".$extension.")";
@@ -313,7 +313,7 @@ if (is_array($activity)) {
         if ($ext_state != '') {
             $block .= "		<span class='op_caller_info'>";
             $block .= "			<table align='right'><tr><td style='text-align: right;'>";
-            $block .= "				<span class='op_call_info'>".$ext['call_length']."</span><br>";
+            // $block .= "				<span class='op_call_info'>".$ext['call_length']."</span><br>";
             $block .= "				<span class='call_control'>";
         //record
         if (permission_exists('operator_panel_record') && $ext_state == 'active') {
@@ -349,6 +349,24 @@ if (is_array($activity)) {
             $block .= "			<span id='op_caller_details_".$extension."'><strong>".$call_name."</strong><br>".$call_number."</span>";
             $block .= "		</span>";
         //transfer
+
+
+				$block .=						 "<table>";
+				$block .=						 	"<tr>";
+				$block .=						 	"<td>";
+				$block .=						  "<span class='op_call_info'>".$ext['call_length']."</span><br>";
+				$block .=						  "</td>";
+				if (in_array($extension, $_SESSION['user']['extensions']) && $ext_state == 'active') {
+					$block .=						  "<td>";
+					if ($dir_icon != '') {
+	            $block .= "			<img src='resources/images/".$dir_icon.".png' align='right' style='margin-top: 3px; margin-left: 4px; width: 12px; height: 12px; cursor: help;' draggable='false' alt=\"".$text['label-call_direction']."\" title=\"".$text['label-call_direction']."\">";
+	        }
+					$block .=						  "</td>";
+				}
+				$block .=						 	"</tr>";
+				$block .=						 "</table>";
+
+
         if (in_array($extension, $_SESSION['user']['extensions']) && $ext_state == 'active') {
             $call_identifier_transfer = $ext['variable_bridge_uuid'];
             $block .= "		<form id='frm_destination_".$extension."_transfer' onsubmit=\"go_destination('".$extension."', document.getElementById('destination_".$extension."_transfer').value, 'transfer', '".$call_identifier_transfer."'); return false;\">";
@@ -358,7 +376,7 @@ if (is_array($activity)) {
         } else {
             //call
         if (in_array($extension, $_SESSION['user']['extensions'])) {
-            $block .= "		<img id='destination_control_".$extension."_call' class='destination_control' src='resources/images/keypad_call.png' style='width: 12px; height: 12px; border: none; margin-top: 26px; margin-right: 1px; cursor: pointer;' align='right' onclick=\"toggle_destination('".$extension."', 'call');\" ".$onhover_pause_refresh.">";
+            $block .= "		<img id='destination_control_".$extension."_call' class='destination_control' src='resources/images/transfer.png' style='width: 48px; height: 48px; border: none; margin-right: 1px; cursor: pointer;' align='right' onclick=\"toggle_destination('".$extension."', 'call');\" ".$onhover_pause_refresh.">";
             $block .= "		<form id='frm_destination_".$extension."_call' onsubmit=\"go_destination('".$extension."', document.getElementById('destination_".$extension."_call').value, 'call'); return false;\">";
             $block .= "			<input type='text' class='formfld' id='destination_".$extension."_call' style='width: 100px; min-width: 100px; max-width: 100px; margin-top: 10px; text-align: center; display: none;' onblur=\"toggle_destination('".$extension."', 'call');\">";
             $block .= "		</form>\n";
@@ -366,6 +384,7 @@ if (is_array($activity)) {
         }
         $block .= "		</td>";
         $block .= "	</tr>";
+
         $block .= "</table>";
 
         if (if_group("superadmin") && isset($_GET['debug'])) {

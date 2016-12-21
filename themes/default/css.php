@@ -1426,7 +1426,6 @@ $default_login = ($_REQUEST['login'] == 'default') ? true : false;
 
 	table.op_ext {
 		width: 100%;
-		height: 60px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 		border-radius: 5px;
