@@ -292,7 +292,7 @@ if (is_array($activity)) {
 
     $block .= "<div id='".$extension."' class='op_ext ".$style."' ".(($_GET['vd_ext_from'] == $extension || $_GET['vd_ext_to'] == $extension) ? "style='border-style: dotted;'" : null)." ".(($ext_state != 'active' && $ext_state != 'ringing') ? "ondrop='drop(event, this.id);' ondragover='allowDrop(event, this.id);' ondragleave='discardDrop(event, this.id);'" : null).">"; // DRAG TO
 		$block .= "<div id='".$call_identifier."' title='".$status_hover."' ".(($draggable) ? "draggable='true' ondragstart=\"drag(event, this.parentNode.getAttribute('name'));\" onclick=\"virtual_drag('".$call_identifier."', '".$extension."');\"" : "onfocus='this.blur();' draggable='false' style='cursor: not-allowed;'").">";
-		$block .= "<table class='op_ext ".$style."'>";
+		$block .= "<table class='op_ext ".$style."' oncontextmenu='return false;'>";
         $block .= "	<tr>";
     //     $block .= "		<td class='op_ext_icon'>";
     //     $block .= "			<span name='".$extension."'>"; // DRAG FROM
