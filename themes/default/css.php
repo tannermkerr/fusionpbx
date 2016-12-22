@@ -1426,6 +1426,7 @@ $default_login = ($_REQUEST['login'] == 'default') ? true : false;
 
 	table.op_ext {
 		width: 100%;
+		height: 70px;
 		-moz-border-radius: 5px;
 		-webkit-border-radius: 5px;
 		border-radius: 5px;
@@ -1462,6 +1463,19 @@ $default_login = ($_REQUEST['login'] == 'default') ? true : false;
 		border-radius: 5px;
 		background-color: #f0f2f6;
 		}
+
+	.glyphicon.glyphicon-record {
+		font-size: 48px;
+	}
+	.glyphicon.glyphicon-earphone {
+		font-size: 48px;
+		float: right;
+		border: none;
+		margin-right: 1px;
+	}
+	.glyphicon.glyphicon-ban-circle {
+		font-size: 48px;
+	}
 
 	td.op_state_ringing {
 		background-color: #d1f1ff;

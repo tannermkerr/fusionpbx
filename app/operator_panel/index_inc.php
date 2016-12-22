@@ -322,7 +322,8 @@ if (is_array($activity)) {
             if (file_exists($rec_file)) {
                 $block .=        "<img src='resources/images/recording.png' style='width: 12px; height: 12px; border: none; margin: 4px 0px 0px 5px; cursor: help;' title=\"".$text['label-recording']."\" ".$onhover_pause_refresh.">";
             } else {
-                $block .=        "<img src='resources/images/recording.png' style='width: 48px; height: 48px; border: none; margin: 4px 0px 0px 5px; cursor: pointer;' title=\"".$text['label-record']."\" onclick=\"record_call('".$call_identifier_record."');\" ".$onhover_pause_refresh.">";
+								$block .= "<span  class=\"glyphicon glyphicon-record\" onclick=\"record_call('".$call_identifier_record."');\" ".$onhover_pause_refresh." style=\"color:red; cursor: pointer;\"></span>";
+                // $block .=        "<img src='resources/images/recording.png' style='width: 48px; height: 48px; border: none; margin: 4px 0px 0px 5px; cursor: pointer;' title=\"".$text['label-record']."\" onclick=\"record_call('".$call_identifier_record."');\" ".$onhover_pause_refresh.">";
             }
         }
         //eavesdrop
@@ -338,12 +339,14 @@ if (is_array($activity)) {
             } else {
                 $call_identifier_kill = $call_identifier;
             }
-            $block .=            "<img src='resources/images/end.png' style='width: 48px; height: 48px; border: none; margin: 4px 0px 0px 5px; cursor: pointer;' title='".$text['label-kill']."' onclick=\"kill_call('".$call_identifier_kill."');\" ".$onhover_pause_refresh.">";
+            // $block .=            "<img src='resources/images/end.png' style='width: 48px; height: 48px; border: none; margin: 4px 0px 0px 5px; cursor: pointer;' title='".$text['label-kill']."' onclick=\"kill_call('".$call_identifier_kill."');\" ".$onhover_pause_refresh.">";
+						$block .= "<span style='cursor: pointer;' class='glyphicon glyphicon-ban-circle' onclick=\"kill_call('".$call_identifier_kill."');\" ".$onhover_pause_refresh."></span>";
         }
             $block .=                "</span>";
         //transfer
         if (in_array($extension, $_SESSION['user']['extensions']) && $ext_state == 'active') {
-            $block .=            "<img id='destination_control_".$extension."_transfer' class='destination_control' src='resources/images/transfer.png' style='width: 48px; height: 48px; border: none; margin: 4px 0px 0px 5px; cursor: pointer;' onclick=\"toggle_destination('".$extension."', 'transfer');\" ".$onhover_pause_refresh.">";
+            // $block .=            "<img id='destination_control_".$extension."_transfer' class='destination_control' src='resources/images/transfer.png' style='width: 48px; height: 48px; border: none; margin: 4px 0px 0px 5px; cursor: pointer;' onclick=\"toggle_destination('".$extension."', 'transfer');\" ".$onhover_pause_refresh.">";
+						$block .= "<span id='destination_control_".$extension."_transfer' class='destination_control glyphicon glyphicon-earphone' style='color: green; cursor: pointer;' onclick=\"toggle_destination('".$extension."', 'transfer');\" ".$onhover_pause_refresh."' ></span>";
         }
             $block .= "			</td></tr></table>";
             $block .= "			<span id='op_caller_details_".$extension."'><strong>".$call_name."</strong><br>".$call_number."</span>";
@@ -376,7 +379,8 @@ if (is_array($activity)) {
         } else {
             //call
         if (in_array($extension, $_SESSION['user']['extensions'])) {
-            $block .= "		<img id='destination_control_".$extension."_call' class='destination_control' src='resources/images/transfer.png' style='width: 48px; height: 48px; border: none; margin-right: 1px; cursor: pointer;' align='right' onclick=\"toggle_destination('".$extension."', 'call');\" ".$onhover_pause_refresh.">";
+            // $block .= "		<img id='destination_control_".$extension."_call' class='destination_control' src='resources/images/transfer.png' style='width: 48px; height: 48px; border: none; margin-right: 1px; cursor: pointer;' align='right' onclick=\"toggle_destination('".$extension."', 'call');\" ".$onhover_pause_refresh.">";
+						$block .= "		<span id='destination_control_".$extension."_call' class=\"glyphicon glyphicon-earphone\" onclick=\"toggle_destination('".$extension."', 'call');\" ".$onhover_pause_refresh." style='cursor: pointer;'></span>";
             $block .= "		<form id='frm_destination_".$extension."_call' onsubmit=\"go_destination('".$extension."', document.getElementById('destination_".$extension."_call').value, 'call'); return false;\">";
             $block .= "			<input type='text' class='formfld' id='destination_".$extension."_call' style='width: 100px; min-width: 100px; max-width: 100px; margin-top: 10px; text-align: center; display: none;' onblur=\"toggle_destination('".$extension."', 'call');\">";
             $block .= "		</form>\n";
